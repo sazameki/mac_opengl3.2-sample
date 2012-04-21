@@ -8,7 +8,6 @@
 #import <Cocoa/Cocoa.h>
 #import <OpenGL/OpenGL.h>
 #import <OpenGL/gl3.h>
-#include "GLKMath.cpp"
 #include "GameMain.h"
 
 

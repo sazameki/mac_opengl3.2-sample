@@ -1,11 +1,13 @@
 //
-//  GLXShape.cpp
+//  GLXShape.mm
 //
 //  Created by Satoshi Numata on 12/04/11.
 //  Copyright (c) 2012 Sazameki and Satoshi Numata, Ph.D. All rights reserved.
 //
 
 #include "GLXShape.h"
+
+#include <TargetConditionals.h>
 
 
 static GLuint   sGLXShapeAttributePosition = 0;
@@ -37,7 +39,12 @@ GLXShape::GLXShape()
 GLXShape::~GLXShape()
 {
     glDeleteBuffers(1, &mVertexBuffer);
+    
+#if TARGET_OS_IPHONE
+    glDeleteVertexArraysOES(1, &mVertexArray);
+#else
     glDeleteVertexArrays(1, &mVertexArray);
+#endif
 }
 
 void GLXShape::addPolygon(const vec3& p1, const vec3& p2, const vec3& p3,
@@ -65,8 +72,13 @@ void GLXShape::addPolygon(const vec3& p1, const vec3& p2, const vec3& p3,
 
 void GLXShape::makeVBO()
 {
+#if TARGET_OS_IPHONE
+    glGenVertexArraysOES(1, &mVertexArray);
+    glBindVertexArrayOES(mVertexArray);
+#else
     glGenVertexArrays(1, &mVertexArray);
     glBindVertexArray(mVertexArray);
+#endif
     
     mVertexCount = mVertexData.size();
     
@@ -80,13 +92,21 @@ void GLXShape::makeVBO()
     glVertexAttribPointer(sGLXShapeAttributeNormal, 3, GL_FLOAT, GL_FALSE, sizeof(GLXVertex), (void*)(sizeof(vec3)));
     glEnableVertexAttribArray(sGLXShapeAttributeTextureUV);
     glVertexAttribPointer(sGLXShapeAttributeTextureUV, 2, GL_FLOAT, GL_FALSE, sizeof(GLXVertex), (void*)(sizeof(vec3)+sizeof(vec3)));
-
+    
+#if TARGET_OS_IPHONE
+    glBindVertexArrayOES(0);
+#else
     glBindVertexArray(0);
+#endif
 }
 
 void GLXShape::draw()
 {
+#if TARGET_OS_IPHONE
+    glBindVertexArrayOES(mVertexArray);
+#else
     glBindVertexArray(mVertexArray);
+#endif
     glDrawArrays(GL_TRIANGLES, 0, mVertexCount);
 }
 
@@ -95,7 +115,7 @@ GLXShapePlane::GLXShapePlane()
 {
     addPolygon(vec3(0.0, 0.0, 0.0), vec3(1.0, 0.0, 0.0), vec3(1.0, 1.0, 0.0),
                vec2(0.0, 1.0), vec2(1.0, 1.0), vec2(1.0, 0.0));
-
+    
     addPolygon(vec3(1.0, 1.0, 0.0), vec3(0.0, 1.0, 0.0), vec3(0.0, 0.0, 0.0),
                vec2(1.0, 0.0), vec2(0.0, 0.0), vec2(0.0, 1.0));
     
@@ -110,13 +130,13 @@ GLXShapeCube::GLXShapeCube(float size)
                vec2(0.0, 1.0), vec2(1.0, 1.0), vec2(1.0, 0.0));
     addPolygon(vec3(size, size, size), vec3(-size, size, size), vec3(-size, -size, size),
                vec2(1.0, 0.0), vec2(0.0, 0.0), vec2(0.0, 1.0));
-
+    
     // 右
     addPolygon(vec3(size, -size, size), vec3(size, -size, -size), vec3(size, size, -size),
                vec2(0.0, 1.0), vec2(1.0, 1.0), vec2(1.0, 0.0));
     addPolygon(vec3(size, size, -size), vec3(size, size, size), vec3(size, -size, size),
                vec2(1.0, 0.0), vec2(0.0, 0.0), vec2(0.0, 1.0));
-
+    
     // 裏
     addPolygon(vec3(size, -size, -size), vec3(-size, -size, -size), vec3(-size, size, -size),
                vec2(0.0, 1.0), vec2(1.0, 1.0), vec2(1.0, 0.0));
@@ -128,13 +148,13 @@ GLXShapeCube::GLXShapeCube(float size)
                vec2(0.0, 1.0), vec2(1.0, 1.0), vec2(1.0, 0.0));
     addPolygon(vec3(-size, size, size), vec3(-size, size, -size), vec3(-size, -size, -size),
                vec2(1.0, 0.0), vec2(0.0, 0.0), vec2(0.0, 1.0));
-
+    
     // トップ
     addPolygon(vec3(-size, size, size), vec3(size, size, size), vec3(size, size, -size),
                vec2(0.0, 1.0), vec2(1.0, 1.0), vec2(1.0, 0.0));
     addPolygon(vec3(size, size, -size), vec3(-size, size, -size), vec3(-size, size, size),
                vec2(1.0, 0.0), vec2(0.0, 0.0), vec2(0.0, 1.0));
-
+    
     // 底
     addPolygon(vec3(-size, -size, size), vec3(-size, -size, -size), vec3(size, -size, -size),
                vec2(1.0, 1.0), vec2(1.0, 0.0), vec2(0.0, 0.0));
@@ -176,14 +196,14 @@ GLXShapeCylinder::GLXShapeCylinder(int divCount, float radius, float height)
         float texBottomX2 = sinf(angle2) * 0.5f + 0.5f;
         float texBottomY2 = cosf(angle2) * 0.5f + 0.5f;
         addPolygon(v1Bottom, v2Bottom, v3Bottom, vec2(0.5, 0.5), vec2(texBottomX1, texBottomY1), vec2(texBottomX2, texBottomY2));
-
+        
         float texX1 = (1.0 - texOne * i);
         float texX2 = (1.0 - texOne * (i + 1));
         
         addPolygon(v2Bottom, v3Top, v2Top, vec2(texX1, 1.0), vec2(texX1, 0.0), vec2(texX2, 0.0));
         addPolygon(v2Top, v3Bottom, v2Bottom, vec2(texX2, 0.0), vec2(texX2, 1.0), vec2(texX1, 1.0));
     }
-
+    
     makeVBO();
 }
 
@@ -199,7 +219,7 @@ GLXShapeCone::GLXShapeCone(int divCount, float radius, float height)
     
     float angleOne = M_PI * 2 / divCount;
     float texOne = 1.0 / divCount;    
-
+    
     for (int i = 0; i < divCount; i++) {
         float angle1 = angleOne * i;
         float angle2 = angleOne * (i + 1);
@@ -373,26 +393,26 @@ GLXShapeDrop::GLXShapeDrop(int divCount, float radius, float height)
         
         float top_y = sinf(top*M_PI/2) * height - height / 2;
         float bottom_y = sinf(bottom*M_PI/2) * height - height / 2;
-
+        
         float top_r = sinf(top*M_PI) * radius;
         float bottom_r = sinf(bottom*M_PI) * radius;
-
+        
         for (int i = 0; i < divCount; i++) {
             float i1 = (float)i / divCount;
             float i2 = (float)(i+1) / divCount;
             
             float top_x1 = cosf(i1*M_PI*2) * top_r;
             float top_x2 = cosf(i2*M_PI*2) * top_r;
-
+            
             float top_z1 = sinf(i1*M_PI*2) * top_r;
             float top_z2 = sinf(i2*M_PI*2) * top_r;
-
+            
             float bottom_x1 = cosf(i1*M_PI*2) * bottom_r;
             float bottom_x2 = cosf(i2*M_PI*2) * bottom_r;
-
+            
             float bottom_z1 = sinf(i1*M_PI*2) * bottom_r;
             float bottom_z2 = sinf(i2*M_PI*2) * bottom_r;
-
+            
             vec3 v1(top_x1, top_y, top_z1);
             vec3 v2(top_x2, top_y, top_z2);
             vec3 v3(bottom_x1, bottom_y, bottom_z1);
@@ -402,7 +422,7 @@ GLXShapeDrop::GLXShapeDrop(int divCount, float radius, float height)
             addPolygon(v3, v2, v4, vec2(1.0-i1, 1.0-bottom), vec2(1.0-i2, 1.0-top), vec2(1.0-i2, 1.0-bottom));
         }
     }
-
+    
     makeVBO();
 }
 

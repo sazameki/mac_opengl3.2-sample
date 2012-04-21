@@ -1,5 +1,5 @@
 //
-//  GLXMath.cpp
+//  GLXMath.mm
 //
 //  Created by Satoshi Numata on 12/04/11.
 //  Copyright (c) 2012 Sazameki and Satoshi Numata, Ph.D. All rights reserved.
@@ -315,7 +315,7 @@ mat3::mat3(const GLKMatrix3& matrix)
 
 mat3 mat3::invert() const
 {
-    return GLKMatrix3Invert(glkMatrix3);
+    return GLKMatrix3Invert(glkMatrix3, NULL);
 }
 
 

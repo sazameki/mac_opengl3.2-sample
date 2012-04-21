@@ -12,6 +12,7 @@
 #include "GLXProgram.h"
 #include "GLXMath.h"
 #include "GLXShape.h"
+#include "GLXLog.h"
 
 #endif  //#ifndef __GLX_COLLECTION_H__
 

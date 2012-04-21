@@ -11,11 +11,11 @@
 
 #include <TargetConditionals.h>
 
-#ifdef TARGET_IOS_IPHONE
+#if TARGET_OS_IPHONE
 #import <GLKit/GLKit.h>
 #else
 #import <OpenGL/gl3.h>
-#endif  //#ifdef TARGET_IOS_IPHONE
+#endif
 
 #include <vector>
 #include "GLXMath.h"

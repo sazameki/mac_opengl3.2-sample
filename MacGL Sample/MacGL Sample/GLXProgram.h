@@ -12,7 +12,7 @@
 
 #include <TargetConditionals.h>
 
-#ifdef TARGET_IOS_IPHONE
+#if TARGET_OS_IPHONE
 #import <OpenGLES/ES2/gl.h>
 #else
 #import <OpenGL/gl3.h>

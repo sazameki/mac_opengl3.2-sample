@@ -100,9 +100,14 @@
 
 - (void)finishApplication
 {
+    CGLLockContext(mCGLContext);
+    CGLSetCurrentContext(mCGLContext);
+
     delete mGameMain;
     mGameMain = 0;
     
+    CGLUnlockContext(mCGLContext);
+
     // AppDelegateのapplicationShouldTerminate:で遅延させていたアプリケーション終了をここで完了させます。
     [NSApp replyToApplicationShouldTerminate:YES];
 }

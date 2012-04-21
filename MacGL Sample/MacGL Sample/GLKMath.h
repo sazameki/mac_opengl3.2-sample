@@ -248,8 +248,12 @@ static inline float GLKMatrix3Det(const GLKMatrix3& matrix)
 	return v1 + v2 + v3;
 }
 
-static inline GLKMatrix3 GLKMatrix3Invert(const GLKMatrix3& matrix)
+static inline GLKMatrix3 GLKMatrix3Invert(const GLKMatrix3& matrix, bool *isInvertible)
 {
+    if (isInvertible) {
+        *isInvertible = true;
+    }
+    
     float determ = 1.0 / GLKMatrix3Det(matrix);
 
     GLKMatrix3 m;

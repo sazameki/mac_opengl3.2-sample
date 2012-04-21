@@ -1,5 +1,5 @@
 //
-//  GLXProgram.m
+//  GLXProgram.mm
 //
 //  Created by Satoshi Numata on 12/04/07.
 //  Copyright (c) 2012 Sazameki and Satoshi Numata, Ph.D. All rights reserved.
@@ -10,7 +10,7 @@
 
 #include <TargetConditionals.h>
 
-#ifdef TARGET_IOS_IPHONE
+#if TARGET_OS_IPHONE
 #import <UIKit/UIKit.h>
 #import <GLKit/GLKit.h>
 #else

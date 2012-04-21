@@ -19,9 +19,9 @@
 		8E50610B1541BE4400F0CE08 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E50610A1541BE4400F0CE08 /* OpenGL.framework */; };
 		8E5061101541BEC900F0CE08 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 8E50610C1541BEBF00F0CE08 /* Shader.vsh */; };
 		8E5061111541BECC00F0CE08 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 8E50610D1541BEBF00F0CE08 /* Shader.fsh */; };
-		8E5061151541BF2E00F0CE08 /* GameMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E5061141541BF2E00F0CE08 /* GameMain.cpp */; };
-		8E5061181541C51500F0CE08 /* GLXMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E5061171541C37600F0CE08 /* GLXMath.cpp */; };
-		8E50611B1541CDA600F0CE08 /* GLXShape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E50611A1541CD9600F0CE08 /* GLXShape.cpp */; };
+		8E5061151541BF2E00F0CE08 /* GameMain.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8E5061141541BF2E00F0CE08 /* GameMain.mm */; };
+		8E5061181541C51500F0CE08 /* GLXMath.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8E5061171541C37600F0CE08 /* GLXMath.mm */; };
+		8E50611B1541CDA600F0CE08 /* GLXShape.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8E50611A1541CD9600F0CE08 /* GLXShape.mm */; };
 		8E9C12321542748D00AB635B /* GLXLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E9C12311542737900AB635B /* GLXLog.cpp */; };
 /* End PBXBuildFile section */
 
@@ -48,14 +48,14 @@
 		8E50610C1541BEBF00F0CE08 /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
 		8E50610D1541BEBF00F0CE08 /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.fsh; sourceTree = "<group>"; };
 		8E5061131541BF2400F0CE08 /* GameMain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameMain.h; sourceTree = "<group>"; };
-		8E5061141541BF2E00F0CE08 /* GameMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameMain.cpp; sourceTree = "<group>"; };
+		8E5061141541BF2E00F0CE08 /* GameMain.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = GameMain.mm; sourceTree = "<group>"; };
 		8E5061161541C37600F0CE08 /* GLXMath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLXMath.h; sourceTree = "<group>"; };
-		8E5061171541C37600F0CE08 /* GLXMath.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GLXMath.cpp; sourceTree = "<group>"; };
+		8E5061171541C37600F0CE08 /* GLXMath.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GLXMath.mm; sourceTree = "<group>"; };
 		8E5061191541CD9500F0CE08 /* GLXShape.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLXShape.h; sourceTree = "<group>"; };
-		8E50611A1541CD9600F0CE08 /* GLXShape.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GLXShape.cpp; sourceTree = "<group>"; };
+		8E50611A1541CD9600F0CE08 /* GLXShape.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GLXShape.mm; sourceTree = "<group>"; };
 		8E9C122A15426DF200AB635B /* GLXSetting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLXSetting.h; sourceTree = "<group>"; };
 		8E9C122C1542726800AB635B /* GLXCollection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLXCollection.h; sourceTree = "<group>"; };
-		8E9C12301542737900AB635B /* GLXLog.h */ = {isa = PBXFileReference; path = GLXLog.h; sourceTree = "<group>"; };
+		8E9C12301542737900AB635B /* GLXLog.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLXLog.h; sourceTree = "<group>"; };
 		8E9C12311542737900AB635B /* GLXLog.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GLXLog.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,7 +105,7 @@
 			children = (
 				8E9C122A15426DF200AB635B /* GLXSetting.h */,
 				8E5061131541BF2400F0CE08 /* GameMain.h */,
-				8E5061141541BF2E00F0CE08 /* GameMain.cpp */,
+				8E5061141541BF2E00F0CE08 /* GameMain.mm */,
 				8E50610C1541BEBF00F0CE08 /* Shader.vsh */,
 				8E50610D1541BEBF00F0CE08 /* Shader.fsh */,
 				8E5061121541BEE300F0CE08 /* GLX Base */,
@@ -155,9 +155,9 @@
 				8E5061041541BE0100F0CE08 /* GLXProgram.h */,
 				8E5061051541BE0100F0CE08 /* GLXProgram.mm */,
 				8E5061161541C37600F0CE08 /* GLXMath.h */,
-				8E5061171541C37600F0CE08 /* GLXMath.cpp */,
+				8E5061171541C37600F0CE08 /* GLXMath.mm */,
 				8E5061191541CD9500F0CE08 /* GLXShape.h */,
-				8E50611A1541CD9600F0CE08 /* GLXShape.cpp */,
+				8E50611A1541CD9600F0CE08 /* GLXShape.mm */,
 				8E9C12301542737900AB635B /* GLXLog.h */,
 				8E9C12311542737900AB635B /* GLXLog.cpp */,
 			);
@@ -240,14 +240,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8E5061151541BF2E00F0CE08 /* GameMain.cpp in Sources */,
+				8E5061151541BF2E00F0CE08 /* GameMain.mm in Sources */,
 				8E5060F11541BC4900F0CE08 /* main.mm in Sources */,
 				8E5060F81541BC4900F0CE08 /* GLXAppDelegate.mm in Sources */,
 				8E5061031541BDD800F0CE08 /* GLXOpenGLView.mm in Sources */,
 				8E5061081541BE1100F0CE08 /* GLXProgram.mm in Sources */,
 				8E5061091541BE1300F0CE08 /* GLKMath.cpp in Sources */,
-				8E5061181541C51500F0CE08 /* GLXMath.cpp in Sources */,
-				8E50611B1541CDA600F0CE08 /* GLXShape.cpp in Sources */,
+				8E5061181541C51500F0CE08 /* GLXMath.mm in Sources */,
+				8E50611B1541CDA600F0CE08 /* GLXShape.mm in Sources */,
 				8E9C12321542748D00AB635B /* GLXLog.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
