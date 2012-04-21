@@ -19,6 +19,7 @@
 #endif
 
 #include <string>
+#include <stdexcept>
 #include <map>
 
 
@@ -30,7 +31,7 @@ class GLXShader {
     GLuint  mShader;
     
 protected:
-    void    compile(const std::string& filename);
+    void    compile(const std::string& filename) throw(std::runtime_error);
     
 public:
     virtual ~GLXShader();
@@ -48,7 +49,7 @@ class GLXVertexShader : public GLXShader {
     std::map<int, std::string>  mAttributes;
 
 public:
-    GLXVertexShader(const std::string& filename);
+    GLXVertexShader(const std::string& filename) throw(std::runtime_error);
     
 public:
     void    addAttributeIndex(GLuint index, const std::string& name);
@@ -62,7 +63,7 @@ private:
 class GLXFragmentShader : public GLXShader {
 
 public:
-    GLXFragmentShader(const std::string& filename);
+    GLXFragmentShader(const std::string& filename) throw(std::runtime_error);
 
 };
 
@@ -72,7 +73,7 @@ class GLXProgram {
     GLuint  mProgram;
 
 public:
-    GLXProgram(GLXVertexShader& vs, GLXFragmentShader& fs);
+    GLXProgram(GLXVertexShader& vs, GLXFragmentShader& fs) throw(std::runtime_error);
     ~GLXProgram();
     
 public:

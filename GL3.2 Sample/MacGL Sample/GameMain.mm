@@ -21,6 +21,7 @@ enum
     UNIFORM_MODELVIEWPROJECTION_MATRIX,
     UNIFORM_MODEL_MATRIX,
     UNIFORM_LIGHT_VECTOR,
+    UNIFORM_TEXTURE_0,
     NUM_UNIFORMS
 };
 GLint uniforms[NUM_UNIFORMS];
@@ -45,6 +46,9 @@ GameMain::GameMain()
 
     mShape = new GLXShapeSphere(20, 20, 0.05);
     mShape2 = new GLXShapeSphere(100, 100, 5.0);
+    
+    mTex0 = new GLXTexture("nasa_saturn.png");
+    mTex1 = new GLXTexture("nasa_mimas.png");
 
     // Setup models
     mRotation = 0.0f;
@@ -76,6 +80,12 @@ GameMain::~GameMain()
     delete mShape2;
     mShape2 = 0;
     
+    delete mTex0;
+    mTex0 = 0;
+    
+    delete mTex1;
+    mTex1 = 0;
+
     delete mProgram;
     mProgram = 0;
 }
@@ -85,7 +95,8 @@ void GameMain::loadShaders()
     GLXVertexShader vs("Shader.vsh");
     vs.addAttributeIndex(ATTRIB_VERTEX, "position");
     vs.addAttributeIndex(ATTRIB_NORMAL, "normal");
-    
+    vs.addAttributeIndex(ATTRIB_TEXTURE_UV, "texUV");
+
     GLXFragmentShader fs("Shader.fsh");
     
     mProgram = new GLXProgram(vs, fs);
@@ -93,7 +104,8 @@ void GameMain::loadShaders()
     uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX] = mProgram->locateUniform("modelViewProjectionMatrix");
     uniforms[UNIFORM_MODEL_MATRIX] = mProgram->locateUniform("modelMatrix");
     uniforms[UNIFORM_LIGHT_VECTOR] = mProgram->locateUniform("lightVec");
-    
+    uniforms[UNIFORM_TEXTURE_0] = mProgram->locateUniform("texture0");
+
     // Shaders are no more needed after they were linked into a program.
 }
 
@@ -102,9 +114,11 @@ void GameMain::updateModel()
     mRotation += 0.01f;
 }
 
-void GameMain::drawView()
+void GameMain::drawView(const vec2& screenSize)
 {
-    mat4 projMat = mat4::MakePerspective(M_PI/2, 4.0/3.0, 0.1f, 100.0f);
+    float aspect = fabsf(screenSize.x / screenSize.y);
+
+    mat4 projMat = mat4::MakePerspective(M_PI/2, aspect, 0.1f, 100.0f);
     vec3 eye(cosf(mRotation) * 10.0, 3.0, sinf(mRotation) * 10.0);
     mat4 viewMat = mat4::MakeLookAt(eye,
                                     vec3(0.0, 0.0, 0.0),
@@ -120,6 +134,7 @@ void GameMain::drawView()
     glUniform3fv(uniforms[UNIFORM_LIGHT_VECTOR], 1, (vec3(0.0, 0.0, 0.0)-eye).v);
     
     {
+        mTex0->activate(0, uniforms[UNIFORM_TEXTURE_0]);
         mat4 modelMat = mat4::Identity;
         modelMat = modelMat.scale(vec3(1.0, 0.98, 1.0));
         mat4 mvpMat = vpMat * modelMat;
@@ -128,6 +143,7 @@ void GameMain::drawView()
         mShape2->draw();
     }
 
+    mTex1->activate(0, uniforms[UNIFORM_TEXTURE_0]);
     for (int i = 0; i < mStars.size(); i++) {
         const StarInfo& starInfo = mStars[i];
         mat4 modelMat = mat4::Identity;

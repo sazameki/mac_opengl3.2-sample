@@ -28,6 +28,9 @@ class GameMain {
     float   mRotation;
     
     std::vector<StarInfo>   mStars;
+    
+    GLXTexture  *mTex0;
+    GLXTexture  *mTex1;
 
 public:
     GameMain();
@@ -35,7 +38,7 @@ public:
     
 public:
     void    updateModel();
-    void    drawView();
+    void    drawView(const vec2& screenSize);
     
 protected:
     void    loadShaders();

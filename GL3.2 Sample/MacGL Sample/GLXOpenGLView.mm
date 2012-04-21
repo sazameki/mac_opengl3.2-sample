@@ -40,7 +40,12 @@
     CGLLockContext(mCGLContext);
     CGLSetCurrentContext(mCGLContext);
     
-    mGameMain = new GameMain();
+    try {
+        mGameMain = new GameMain();
+    } catch (std::exception& e) {
+        NSLog(@"[Error] GameMain::GameMain() => %s", e.what());
+        exit(100);
+    }
     
     CGLUnlockContext(mCGLContext);
 
@@ -72,7 +77,13 @@
     
     glViewport(x, y, width, height);
     
-    mGameMain->drawView();
+    try {
+        vec2 screenSize(width, height);
+        mGameMain->drawView(screenSize);
+    } catch (std::exception& e) {
+        NSLog(@"[Error] GameMain::drawView() => %s", e.what());
+        exit(103);
+    }
 
     CGLFlushDrawable(mCGLContext);
     CGLUnlockContext(mCGLContext);
@@ -81,12 +92,39 @@
 - (void)updateProc:(id)dummy
 {
     @autoreleasepool {
+        static const float baseRatio = (float)GLX_SCREEN_WIDTH/GLX_SCREEN_HEIGHT;
+
         while (gIsAppRunning) {
             CGLLockContext(mCGLContext);
             CGLSetCurrentContext(mCGLContext);
 
-            mGameMain->drawView();
-            mGameMain->updateModel();
+            try {
+                int width = (int)self.frame.size.width;
+                int height = (int)self.frame.size.height;
+                
+                int x = 0, y = 0;
+                if ((float)width / height <= baseRatio) {
+                    int theHeight = (int)(width / baseRatio);
+                    y = (height - theHeight) / 2;
+                    height = theHeight;
+                } else {
+                    int theWidth = (int)(height * baseRatio);
+                    x = (width - theWidth) / 2;
+                    width = theWidth;
+                }
+
+                vec2 screenSize(width, height);
+                mGameMain->drawView(screenSize);
+            } catch (std::exception& e) {
+                NSLog(@"[Error] GameMain::drawView() => %s", e.what());
+                exit(103);
+            }
+            try {
+                mGameMain->updateModel();
+            } catch (std::exception& e) {
+                NSLog(@"[Error] GameMain::updateModel() => %s", e.what());
+                exit(102);
+            }
 
             CGLFlushDrawable(mCGLContext);
             CGLUnlockContext(mCGLContext);
@@ -103,8 +141,13 @@
     CGLLockContext(mCGLContext);
     CGLSetCurrentContext(mCGLContext);
 
-    delete mGameMain;
-    mGameMain = 0;
+    try {
+        delete mGameMain;
+        mGameMain = 0;
+    } catch (std::exception& e) {
+        NSLog(@"[Error] GameMain::~GameMain() => %s", e.what());
+        exit(104);
+    }
     
     CGLUnlockContext(mCGLContext);
 

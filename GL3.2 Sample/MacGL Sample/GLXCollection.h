@@ -13,6 +13,7 @@
 #include "GLXMath.h"
 #include "GLXShape.h"
 #include "GLXLog.h"
+#include "GLXTexture.h"
 
 #endif  //#ifndef __GLX_COLLECTION_H__
 

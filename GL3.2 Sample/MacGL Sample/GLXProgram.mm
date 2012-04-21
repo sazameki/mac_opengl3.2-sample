@@ -19,6 +19,7 @@
 #endif
 
 #include "GLXLog.h"
+#include <sstream>
 
 
 bool CompileShader(GLuint *shader, NSString *filepath, GLenum type)
@@ -60,7 +61,7 @@ bool CompileShader(GLuint *shader, NSString *filepath, GLenum type)
 }
 
 
-void GLXShader::compile(const std::string& filename_)
+void GLXShader::compile(const std::string& filename_) throw(std::runtime_error)
 {
     GLenum type = (dynamic_cast<GLXVertexShader*>(this)? GL_VERTEX_SHADER: GL_FRAGMENT_SHADER);
 
@@ -69,21 +70,25 @@ void GLXShader::compile(const std::string& filename_)
                                                          ofType:[filename pathExtension]];
     
     if (!filepath) {
+        std::ostringstream oss;
         if (type == GL_VERTEX_SHADER) {
-            NSLog(@"[Error] GLMShader: Cannot find source file for vertex shader: \"%@\"", filename);
+            oss << "GLXVertexShader: ";
         } else {
-            NSLog(@"[Error] GLMShader: Cannot find source file for fragment shader: \"%@\"", filename);
+            oss << "GLXFragmentShader: ";
         }
-        return;
+        oss << "Cannot find source file \"" << filename << "\"";
+        throw std::runtime_error(oss.str());
     }
     
     if (!CompileShader(&mShader, filepath, type)) {
+        std::ostringstream oss;
         if (type == GL_VERTEX_SHADER) {
-            NSLog(@"[Error] GLMShader: Failed to compile vertex shader");
+            oss << "GLXVertexShader: ";
         } else {
-            NSLog(@"[Error] GLMShader: Failed to compile fragment shader");
+            oss << "GLXFragmentShader: ";
         }
-        return;
+        oss << "Failed to compile.";
+        throw std::runtime_error(oss.str());
     }
 }
 
@@ -101,7 +106,7 @@ GLuint GLXShader::getShader() const
 }
 
 
-GLXVertexShader::GLXVertexShader(const std::string& filename)
+GLXVertexShader::GLXVertexShader(const std::string& filename) throw(std::runtime_error)
 {
     compile(filename);
 }
@@ -123,16 +128,18 @@ void GLXVertexShader::locateAttributes(GLuint program)
 }
 
 
-GLXFragmentShader::GLXFragmentShader(const std::string& filename)
+GLXFragmentShader::GLXFragmentShader(const std::string& filename) throw(std::runtime_error)
 {
     compile(filename);
 }
 
 
-GLXProgram::GLXProgram(GLXVertexShader& vs, GLXFragmentShader& fs)
+GLXProgram::GLXProgram(GLXVertexShader& vs, GLXFragmentShader& fs) throw(std::runtime_error)
 {
     mProgram = glCreateProgram();
-    link(vs, fs);
+    if (!link(vs, fs)) {
+        throw std::runtime_error("GLXProgram: Failed to link shaders.");
+    }
 }
 
 GLXProgram::~GLXProgram()
