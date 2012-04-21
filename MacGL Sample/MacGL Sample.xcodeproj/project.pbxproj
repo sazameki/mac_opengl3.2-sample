@@ -1,0 +1,378 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		8E5060E51541BC4900F0CE08 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E5060E41541BC4900F0CE08 /* Cocoa.framework */; };
+		8E5060EF1541BC4900F0CE08 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8E5060ED1541BC4900F0CE08 /* InfoPlist.strings */; };
+		8E5060F11541BC4900F0CE08 /* main.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8E5060F01541BC4900F0CE08 /* main.mm */; };
+		8E5060F51541BC4900F0CE08 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 8E5060F31541BC4900F0CE08 /* Credits.rtf */; };
+		8E5060F81541BC4900F0CE08 /* GLXAppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8E5060F71541BC4900F0CE08 /* GLXAppDelegate.mm */; };
+		8E5060FB1541BC4900F0CE08 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8E5060F91541BC4900F0CE08 /* MainMenu.xib */; };
+		8E5061031541BDD800F0CE08 /* GLXOpenGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8E5061021541BD9C00F0CE08 /* GLXOpenGLView.mm */; };
+		8E5061081541BE1100F0CE08 /* GLXProgram.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8E5061051541BE0100F0CE08 /* GLXProgram.mm */; };
+		8E5061091541BE1300F0CE08 /* GLKMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E5061071541BE0600F0CE08 /* GLKMath.cpp */; };
+		8E50610B1541BE4400F0CE08 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E50610A1541BE4400F0CE08 /* OpenGL.framework */; };
+		8E5061101541BEC900F0CE08 /* Shader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 8E50610C1541BEBF00F0CE08 /* Shader.vsh */; };
+		8E5061111541BECC00F0CE08 /* Shader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 8E50610D1541BEBF00F0CE08 /* Shader.fsh */; };
+		8E5061151541BF2E00F0CE08 /* GameMain.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E5061141541BF2E00F0CE08 /* GameMain.cpp */; };
+		8E5061181541C51500F0CE08 /* GLXMath.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E5061171541C37600F0CE08 /* GLXMath.cpp */; };
+		8E50611B1541CDA600F0CE08 /* GLXShape.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E50611A1541CD9600F0CE08 /* GLXShape.cpp */; };
+		8E9C12321542748D00AB635B /* GLXLog.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8E9C12311542737900AB635B /* GLXLog.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		8E5060E01541BC4900F0CE08 /* MacGL Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MacGL Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E5060E41541BC4900F0CE08 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		8E5060E71541BC4900F0CE08 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		8E5060E91541BC4900F0CE08 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		8E5060EC1541BC4900F0CE08 /* MacGL Sample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MacGL Sample-Info.plist"; sourceTree = "<group>"; };
+		8E5060EE1541BC4900F0CE08 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8E5060F01541BC4900F0CE08 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
+		8E5060F21541BC4900F0CE08 /* MacGL Sample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MacGL Sample-Prefix.pch"; sourceTree = "<group>"; };
+		8E5060F41541BC4900F0CE08 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		8E5060F61541BC4900F0CE08 /* GLXAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLXAppDelegate.h; sourceTree = "<group>"; };
+		8E5060F71541BC4900F0CE08 /* GLXAppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GLXAppDelegate.mm; sourceTree = "<group>"; };
+		8E5060FA1541BC4900F0CE08 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		8E5061011541BD9C00F0CE08 /* GLXOpenGLView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLXOpenGLView.h; sourceTree = "<group>"; };
+		8E5061021541BD9C00F0CE08 /* GLXOpenGLView.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GLXOpenGLView.mm; sourceTree = "<group>"; };
+		8E5061041541BE0100F0CE08 /* GLXProgram.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLXProgram.h; sourceTree = "<group>"; };
+		8E5061051541BE0100F0CE08 /* GLXProgram.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GLXProgram.mm; sourceTree = "<group>"; };
+		8E5061061541BE0600F0CE08 /* GLKMath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLKMath.h; sourceTree = "<group>"; };
+		8E5061071541BE0600F0CE08 /* GLKMath.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GLKMath.cpp; sourceTree = "<group>"; };
+		8E50610A1541BE4400F0CE08 /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
+		8E50610C1541BEBF00F0CE08 /* Shader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.vsh; sourceTree = "<group>"; };
+		8E50610D1541BEBF00F0CE08 /* Shader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader.fsh; sourceTree = "<group>"; };
+		8E5061131541BF2400F0CE08 /* GameMain.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameMain.h; sourceTree = "<group>"; };
+		8E5061141541BF2E00F0CE08 /* GameMain.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GameMain.cpp; sourceTree = "<group>"; };
+		8E5061161541C37600F0CE08 /* GLXMath.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLXMath.h; sourceTree = "<group>"; };
+		8E5061171541C37600F0CE08 /* GLXMath.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GLXMath.cpp; sourceTree = "<group>"; };
+		8E5061191541CD9500F0CE08 /* GLXShape.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLXShape.h; sourceTree = "<group>"; };
+		8E50611A1541CD9600F0CE08 /* GLXShape.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GLXShape.cpp; sourceTree = "<group>"; };
+		8E9C122A15426DF200AB635B /* GLXSetting.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLXSetting.h; sourceTree = "<group>"; };
+		8E9C122C1542726800AB635B /* GLXCollection.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLXCollection.h; sourceTree = "<group>"; };
+		8E9C12301542737900AB635B /* GLXLog.h */ = {isa = PBXFileReference; path = GLXLog.h; sourceTree = "<group>"; };
+		8E9C12311542737900AB635B /* GLXLog.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GLXLog.cpp; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8E5060DD1541BC4900F0CE08 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E50610B1541BE4400F0CE08 /* OpenGL.framework in Frameworks */,
+				8E5060E51541BC4900F0CE08 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8E5060D51541BC4900F0CE08 = {
+			isa = PBXGroup;
+			children = (
+				8E5060EA1541BC4900F0CE08 /* MacGL Sample */,
+				8E5060E31541BC4900F0CE08 /* Frameworks */,
+				8E5060E11541BC4900F0CE08 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8E5060E11541BC4900F0CE08 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8E5060E01541BC4900F0CE08 /* MacGL Sample.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		8E5060E31541BC4900F0CE08 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				8E5060E91541BC4900F0CE08 /* Foundation.framework */,
+				8E5060E71541BC4900F0CE08 /* AppKit.framework */,
+				8E50610A1541BE4400F0CE08 /* OpenGL.framework */,
+				8E5060E41541BC4900F0CE08 /* Cocoa.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		8E5060EA1541BC4900F0CE08 /* MacGL Sample */ = {
+			isa = PBXGroup;
+			children = (
+				8E9C122A15426DF200AB635B /* GLXSetting.h */,
+				8E5061131541BF2400F0CE08 /* GameMain.h */,
+				8E5061141541BF2E00F0CE08 /* GameMain.cpp */,
+				8E50610C1541BEBF00F0CE08 /* Shader.vsh */,
+				8E50610D1541BEBF00F0CE08 /* Shader.fsh */,
+				8E5061121541BEE300F0CE08 /* GLX Base */,
+				8E5060EB1541BC4900F0CE08 /* Supporting Files */,
+			);
+			path = "MacGL Sample";
+			sourceTree = "<group>";
+		};
+		8E5060EB1541BC4900F0CE08 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8E5060EC1541BC4900F0CE08 /* MacGL Sample-Info.plist */,
+				8E5060ED1541BC4900F0CE08 /* InfoPlist.strings */,
+				8E5060F01541BC4900F0CE08 /* main.mm */,
+				8E5060F21541BC4900F0CE08 /* MacGL Sample-Prefix.pch */,
+				8E5060F31541BC4900F0CE08 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8E5061121541BEE300F0CE08 /* GLX Base */ = {
+			isa = PBXGroup;
+			children = (
+				8E9C1229154203AA00AB635B /* Shared */,
+				8E9C12281542039D00AB635B /* Mac */,
+			);
+			name = "GLX Base";
+			sourceTree = "<group>";
+		};
+		8E9C12281542039D00AB635B /* Mac */ = {
+			isa = PBXGroup;
+			children = (
+				8E5060F91541BC4900F0CE08 /* MainMenu.xib */,
+				8E5060F61541BC4900F0CE08 /* GLXAppDelegate.h */,
+				8E5060F71541BC4900F0CE08 /* GLXAppDelegate.mm */,
+				8E5061011541BD9C00F0CE08 /* GLXOpenGLView.h */,
+				8E5061021541BD9C00F0CE08 /* GLXOpenGLView.mm */,
+				8E9C122B154271AD00AB635B /* GLKit Substitute */,
+			);
+			name = Mac;
+			sourceTree = "<group>";
+		};
+		8E9C1229154203AA00AB635B /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				8E9C122C1542726800AB635B /* GLXCollection.h */,
+				8E5061041541BE0100F0CE08 /* GLXProgram.h */,
+				8E5061051541BE0100F0CE08 /* GLXProgram.mm */,
+				8E5061161541C37600F0CE08 /* GLXMath.h */,
+				8E5061171541C37600F0CE08 /* GLXMath.cpp */,
+				8E5061191541CD9500F0CE08 /* GLXShape.h */,
+				8E50611A1541CD9600F0CE08 /* GLXShape.cpp */,
+				8E9C12301542737900AB635B /* GLXLog.h */,
+				8E9C12311542737900AB635B /* GLXLog.cpp */,
+			);
+			name = Shared;
+			sourceTree = "<group>";
+		};
+		8E9C122B154271AD00AB635B /* GLKit Substitute */ = {
+			isa = PBXGroup;
+			children = (
+				8E5061061541BE0600F0CE08 /* GLKMath.h */,
+				8E5061071541BE0600F0CE08 /* GLKMath.cpp */,
+			);
+			name = "GLKit Substitute";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8E5060DF1541BC4900F0CE08 /* MacGL Sample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8E5060FE1541BC4900F0CE08 /* Build configuration list for PBXNativeTarget "MacGL Sample" */;
+			buildPhases = (
+				8E5060DC1541BC4900F0CE08 /* Sources */,
+				8E5060DD1541BC4900F0CE08 /* Frameworks */,
+				8E5060DE1541BC4900F0CE08 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "MacGL Sample";
+			productName = "MacGL Sample";
+			productReference = 8E5060E01541BC4900F0CE08 /* MacGL Sample.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8E5060D71541BC4900F0CE08 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = GLX;
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = "Sazameki and Satoshi Numata, Ph.D";
+			};
+			buildConfigurationList = 8E5060DA1541BC4900F0CE08 /* Build configuration list for PBXProject "MacGL Sample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 8E5060D51541BC4900F0CE08;
+			productRefGroup = 8E5060E11541BC4900F0CE08 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8E5060DF1541BC4900F0CE08 /* MacGL Sample */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8E5060DE1541BC4900F0CE08 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E5060EF1541BC4900F0CE08 /* InfoPlist.strings in Resources */,
+				8E5060F51541BC4900F0CE08 /* Credits.rtf in Resources */,
+				8E5060FB1541BC4900F0CE08 /* MainMenu.xib in Resources */,
+				8E5061101541BEC900F0CE08 /* Shader.vsh in Resources */,
+				8E5061111541BECC00F0CE08 /* Shader.fsh in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8E5060DC1541BC4900F0CE08 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8E5061151541BF2E00F0CE08 /* GameMain.cpp in Sources */,
+				8E5060F11541BC4900F0CE08 /* main.mm in Sources */,
+				8E5060F81541BC4900F0CE08 /* GLXAppDelegate.mm in Sources */,
+				8E5061031541BDD800F0CE08 /* GLXOpenGLView.mm in Sources */,
+				8E5061081541BE1100F0CE08 /* GLXProgram.mm in Sources */,
+				8E5061091541BE1300F0CE08 /* GLKMath.cpp in Sources */,
+				8E5061181541C51500F0CE08 /* GLXMath.cpp in Sources */,
+				8E50611B1541CDA600F0CE08 /* GLXShape.cpp in Sources */,
+				8E9C12321542748D00AB635B /* GLXLog.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		8E5060ED1541BC4900F0CE08 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8E5060EE1541BC4900F0CE08 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		8E5060F31541BC4900F0CE08 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8E5060F41541BC4900F0CE08 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		8E5060F91541BC4900F0CE08 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8E5060FA1541BC4900F0CE08 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		8E5060FC1541BC4900F0CE08 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		8E5060FD1541BC4900F0CE08 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		8E5060FF1541BC4900F0CE08 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MacGL Sample/MacGL Sample-Prefix.pch";
+				INFOPLIST_FILE = "MacGL Sample/MacGL Sample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		8E5061001541BC4900F0CE08 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MacGL Sample/MacGL Sample-Prefix.pch";
+				INFOPLIST_FILE = "MacGL Sample/MacGL Sample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8E5060DA1541BC4900F0CE08 /* Build configuration list for PBXProject "MacGL Sample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E5060FC1541BC4900F0CE08 /* Debug */,
+				8E5060FD1541BC4900F0CE08 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8E5060FE1541BC4900F0CE08 /* Build configuration list for PBXNativeTarget "MacGL Sample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8E5060FF1541BC4900F0CE08 /* Debug */,
+				8E5061001541BC4900F0CE08 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8E5060D71541BC4900F0CE08 /* Project object */;
+}
