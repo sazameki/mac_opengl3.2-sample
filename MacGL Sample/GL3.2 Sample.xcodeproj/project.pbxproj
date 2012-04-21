@@ -26,14 +26,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		8E5060E01541BC4900F0CE08 /* MacGL Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "MacGL Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8E5060E01541BC4900F0CE08 /* GL3.2 Sample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GL3.2 Sample.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8E5060E41541BC4900F0CE08 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		8E5060E71541BC4900F0CE08 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		8E5060E91541BC4900F0CE08 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		8E5060EC1541BC4900F0CE08 /* MacGL Sample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MacGL Sample-Info.plist"; sourceTree = "<group>"; };
+		8E5060EC1541BC4900F0CE08 /* GL3.2 Sample-Info.plist */ = {isa = PBXFileReference; path = "GL3.2 Sample-Info.plist"; sourceTree = "<group>"; };
 		8E5060EE1541BC4900F0CE08 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		8E5060F01541BC4900F0CE08 /* main.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = main.mm; sourceTree = "<group>"; };
-		8E5060F21541BC4900F0CE08 /* MacGL Sample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MacGL Sample-Prefix.pch"; sourceTree = "<group>"; };
+		8E5060F21541BC4900F0CE08 /* GL3.2 Sample-Prefix.pch */ = {isa = PBXFileReference; path = "GL3.2 Sample-Prefix.pch"; sourceTree = "<group>"; };
 		8E5060F41541BC4900F0CE08 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		8E5060F61541BC4900F0CE08 /* GLXAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLXAppDelegate.h; sourceTree = "<group>"; };
 		8E5060F71541BC4900F0CE08 /* GLXAppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GLXAppDelegate.mm; sourceTree = "<group>"; };
@@ -84,7 +84,7 @@
 		8E5060E11541BC4900F0CE08 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8E5060E01541BC4900F0CE08 /* MacGL Sample.app */,
+				8E5060E01541BC4900F0CE08 /* GL3.2 Sample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -117,10 +117,10 @@
 		8E5060EB1541BC4900F0CE08 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				8E5060EC1541BC4900F0CE08 /* MacGL Sample-Info.plist */,
+				8E5060EC1541BC4900F0CE08 /* GL3.2 Sample-Info.plist */,
 				8E5060ED1541BC4900F0CE08 /* InfoPlist.strings */,
 				8E5060F01541BC4900F0CE08 /* main.mm */,
-				8E5060F21541BC4900F0CE08 /* MacGL Sample-Prefix.pch */,
+				8E5060F21541BC4900F0CE08 /* GL3.2 Sample-Prefix.pch */,
 				8E5060F31541BC4900F0CE08 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
@@ -176,9 +176,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		8E5060DF1541BC4900F0CE08 /* MacGL Sample */ = {
+		8E5060DF1541BC4900F0CE08 /* GL3.2 Sample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 8E5060FE1541BC4900F0CE08 /* Build configuration list for PBXNativeTarget "MacGL Sample" */;
+			buildConfigurationList = 8E5060FE1541BC4900F0CE08 /* Build configuration list for PBXNativeTarget "GL3.2 Sample" */;
 			buildPhases = (
 				8E5060DC1541BC4900F0CE08 /* Sources */,
 				8E5060DD1541BC4900F0CE08 /* Frameworks */,
@@ -188,9 +188,9 @@
 			);
 			dependencies = (
 			);
-			name = "MacGL Sample";
+			name = "GL3.2 Sample";
 			productName = "MacGL Sample";
-			productReference = 8E5060E01541BC4900F0CE08 /* MacGL Sample.app */;
+			productReference = 8E5060E01541BC4900F0CE08 /* GL3.2 Sample.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -203,7 +203,7 @@
 				LastUpgradeCheck = 0430;
 				ORGANIZATIONNAME = "Sazameki and Satoshi Numata, Ph.D";
 			};
-			buildConfigurationList = 8E5060DA1541BC4900F0CE08 /* Build configuration list for PBXProject "MacGL Sample" */;
+			buildConfigurationList = 8E5060DA1541BC4900F0CE08 /* Build configuration list for PBXProject "GL3.2 Sample" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -215,7 +215,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				8E5060DF1541BC4900F0CE08 /* MacGL Sample */,
+				8E5060DF1541BC4900F0CE08 /* GL3.2 Sample */,
 			);
 		};
 /* End PBXProject section */
@@ -333,9 +333,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MacGL Sample/MacGL Sample-Prefix.pch";
-				INFOPLIST_FILE = "MacGL Sample/MacGL Sample-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "MacGL Sample/GL3.2 Sample-Prefix.pch";
+				INFOPLIST_FILE = "MacGL Sample/GL3.2 Sample-Info.plist";
+				PRODUCT_NAME = "GL3.2 Sample";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -344,9 +344,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "MacGL Sample/MacGL Sample-Prefix.pch";
-				INFOPLIST_FILE = "MacGL Sample/MacGL Sample-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				GCC_PREFIX_HEADER = "MacGL Sample/GL3.2 Sample-Prefix.pch";
+				INFOPLIST_FILE = "MacGL Sample/GL3.2 Sample-Info.plist";
+				PRODUCT_NAME = "GL3.2 Sample";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -354,7 +354,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		8E5060DA1541BC4900F0CE08 /* Build configuration list for PBXProject "MacGL Sample" */ = {
+		8E5060DA1541BC4900F0CE08 /* Build configuration list for PBXProject "GL3.2 Sample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8E5060FC1541BC4900F0CE08 /* Debug */,
@@ -363,7 +363,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		8E5060FE1541BC4900F0CE08 /* Build configuration list for PBXNativeTarget "MacGL Sample" */ = {
+		8E5060FE1541BC4900F0CE08 /* Build configuration list for PBXNativeTarget "GL3.2 Sample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				8E5060FF1541BC4900F0CE08 /* Debug */,
