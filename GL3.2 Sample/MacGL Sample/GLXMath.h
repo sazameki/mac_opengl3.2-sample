@@ -9,7 +9,13 @@
 #ifndef __GLX_MATH_H__
 #define __GLX_MATH_H__
 
+#include <TargetConditionals.h>
+
+#if TARGET_OS_IPHONE
+#import <GLKit/GLKit.h>
+#else
 #import "GLKMath.h"
+#endif
 
 
 struct vec2 {
@@ -29,32 +35,32 @@ public:
 public:
     float   dot(const vec2& v);
     float   length() const;
-
+    
 public:
     bool    operator==(const vec2& v) const;
-
+    
     vec2&   operator=(const vec2& v);
     
     vec2    operator+(const vec2& v) const;
     vec2    operator-(const vec2& v) const;
     vec2    operator*(const vec2& v) const;
     vec2    operator/(const vec2& v) const;
-
+    
     vec2    operator+(const float value) const;
     vec2    operator-(const float value) const;
     vec2    operator*(const float value) const;
     vec2    operator/(const float value) const;
-
+    
     vec2&   operator+=(const vec2& v);
     vec2&   operator-=(const vec2& v);
     vec2&   operator*=(const vec2& v);
     vec2&   operator/=(const vec2& v);
-
+    
     vec2&   operator+=(const float value);
     vec2&   operator-=(const float value);
     vec2&   operator*=(const float value);
     vec2&   operator/=(const float value);
-
+    
 };
 
 
@@ -78,22 +84,22 @@ public:
     vec3    cross(const vec3& v) const;
     float   dot(const vec3& v) const;
     float   length() const;
-
+    
 public:
     bool    operator==(const vec3& v) const;
-
+    
     vec3&   operator=(const vec3& v);
-
+    
     vec3    operator+(const vec3& v) const;
     vec3    operator-(const vec3& v) const;
     vec3    operator*(const vec3& v) const;
     vec3    operator/(const vec3& v) const;
-
+    
     vec3    operator+(const float value) const;
     vec3    operator-(const float value) const;
     vec3    operator*(const float value) const;
     vec3    operator/(const float value) const;
-
+    
     vec3&   operator+=(const vec3& v);
     vec3&   operator-=(const vec3& v);
     vec3&   operator*=(const vec3& v);
@@ -103,7 +109,7 @@ public:
     vec3&   operator-=(const float value);
     vec3&   operator*=(const float value);
     vec3&   operator/=(const float value);
-
+    
 };
 
 
@@ -120,12 +126,12 @@ struct mat3 {
         };
         float m[9];
     };
-
+    
 public:
     mat3(float value);
     mat3(const mat4& matrix);
     mat3(const GLKMatrix3& matrix);
-
+    
 public:
     mat3    invert() const;
     
@@ -154,6 +160,9 @@ public:
 public:
     static mat4 MakePerspective(float fovyRadians, float aspect, float nearZ, float farZ);
     static mat4 MakeLookAt(const vec3& eye, const vec3& target, const vec3& up);
+    static mat4 MakeOrtho(float left, float right, float bottom, float top, float nearZ, float farZ);
+    
+    static mat4 MakeScale(const vec3& vec);
     
 public:
     mat4    rotate(float rotationInRadian, const vec3& axis) const;

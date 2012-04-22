@@ -40,8 +40,23 @@
     CGLLockContext(mCGLContext);
     CGLSetCurrentContext(mCGLContext);
     
+    static const float baseRatio = (float)GLX_SCREEN_WIDTH/GLX_SCREEN_HEIGHT;
+    int width = (int)self.frame.size.width;
+    int height = (int)self.frame.size.height;
+    int x = 0, y = 0;
+    if ((float)width / height <= baseRatio) {
+        int theHeight = (int)(width / baseRatio);
+        y = (height - theHeight) / 2;
+        height = theHeight;
+    } else {
+        int theWidth = (int)(height * baseRatio);
+        x = (width - theWidth) / 2;
+        width = theWidth;
+    }
+
     try {
-        mGameMain = new GameMain();
+        vec2 screenSize(width, height);
+        mGameMain = new GameMain(screenSize);
     } catch (std::exception& e) {
         NSLog(@"[Error] GameMain::GameMain() => %s", e.what());
         exit(100);

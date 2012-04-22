@@ -11,6 +11,7 @@
 
 
 GLXTexture::GLXTexture(const std::string& filename_, bool isCubeMap) throw(std::runtime_error)
+: mTexInfo(nil)
 {
     NSString *filename = [[NSString alloc] initWithCString:filename_.c_str() encoding:NSUTF8StringEncoding];
     NSURL *fileURL = [[NSBundle mainBundle] URLForResource:[filename stringByDeletingPathExtension]
@@ -38,6 +39,12 @@ GLXTexture::GLXTexture(const std::string& filename_, bool isCubeMap) throw(std::
         }
         throw std::runtime_error(oss.str());
     }
+}
+
+GLXTexture::GLXTexture()
+: mTexInfo(nil)
+{
+    // Do nothing
 }
 
 GLXTexture::~GLXTexture()

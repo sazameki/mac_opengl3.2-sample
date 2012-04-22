@@ -21,10 +21,12 @@ struct StarInfo {
 class GameMain {
     
     GLXProgram  *mProgram;
+    GLXProgram  *mProgram2;
     
     GLXShape    *mShape;
     GLXShape    *mShape2;
-    
+    GLXShape    *mShapePlane;
+
     float   mRotation;
     
     std::vector<StarInfo>   mStars;
@@ -32,16 +34,22 @@ class GameMain {
     GLXTexture  *mTex0;
     GLXTexture  *mTex1;
 
+    GLXFramebuffer  *mFramebuffer;
+
 public:
-    GameMain();
+    GameMain(const vec2& screenSize);
     ~GameMain();
     
+private:
+    void    loadShaders();
+
 public:
     void    updateModel();
     void    drawView(const vec2& screenSize);
     
-protected:
-    void    loadShaders();
+private:
+    void    draw1(const vec2& screenSize);
+    void    draw2(const vec2& screenSize);
     
 };
 

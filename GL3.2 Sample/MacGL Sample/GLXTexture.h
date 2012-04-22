@@ -26,10 +26,13 @@ class GLXTexture {
     
 public:
     GLXTexture(const std::string& filename, bool isCubeMap = false) throw(std::runtime_error);
-    ~GLXTexture();
+    virtual ~GLXTexture();
+    
+protected:
+    GLXTexture();
     
 public:
-    void    activate(int texIndex, GLint uniformIndex) throw(std::runtime_error);
+    virtual void    activate(int texIndex, GLint uniformIndex) throw(std::runtime_error);
     
 };
 

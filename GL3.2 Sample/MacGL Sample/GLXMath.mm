@@ -9,25 +9,25 @@
 
 
 vec2::vec2()
-    : x(0.0), y(0.0)
+: x(0.0), y(0.0)
 {
     // Do nothing
 }
 
 vec2::vec2(const float _x, const float _y)
-    : x(_x), y(_y)
+: x(_x), y(_y)
 {
     // Do nothing
 }
 
 vec2::vec2(const GLKVector2& vec)
-    : glkVector2(vec)
+: glkVector2(vec)
 {
     // Do nothing
 }
 
 vec2::vec2(const vec2& vec)
-    : glkVector2(vec.glkVector2)
+: glkVector2(vec.glkVector2)
 {
     // Do nothing
 }
@@ -143,25 +143,25 @@ vec2& vec2::operator/=(const float value)
 
 
 vec3::vec3()
-    : x(0.0), y(0.0), z(0.0)
+: x(0.0), y(0.0), z(0.0)
 {
     // Do nothing
 }
 
 vec3::vec3(const float _x, const float _y, const float _z)
-    : x(_x), y(_y), z(_z)
+: x(_x), y(_y), z(_z)
 {
     // Do nothing
 }
 
 vec3::vec3(const GLKVector3& vec)
-    : glkVector3(vec)
+: glkVector3(vec)
 {
     // Do nothing
 }
 
 vec3::vec3(const vec3& vec)
-    : x(vec.x), y(vec.y), z(vec.z)
+: x(vec.x), y(vec.y), z(vec.z)
 {
     // Do nothing
 }
@@ -308,7 +308,7 @@ mat3::mat3(const mat4& matrix)
 }
 
 mat3::mat3(const GLKMatrix3& matrix)
-    : glkMatrix3(matrix)
+: glkMatrix3(matrix)
 {
     // Do nothing
 }
@@ -329,7 +329,7 @@ mat4::mat4(float value)
 }
 
 mat4::mat4(const GLKMatrix4& matrix)
-    : glkMatrix4(matrix)
+: glkMatrix4(matrix)
 {
     // Do nothing
 }
@@ -342,6 +342,16 @@ mat4 mat4::MakePerspective(float fovyRadians, float aspect, float nearZ, float f
 mat4 mat4::MakeLookAt(const vec3& eye, const vec3& target, const vec3& up)
 {
     return GLKMatrix4MakeLookAt(eye.x, eye.y, eye.z, target.x, target.y, target.z, up.x, up.y, up.z);
+}
+
+mat4 mat4::MakeOrtho(float left, float right, float bottom, float top, float nearZ, float farZ)
+{
+    return GLKMatrix4MakeOrtho(left, right, bottom, top, nearZ, farZ);
+}
+
+mat4 mat4::MakeScale(const vec3& vec)
+{
+    return GLKMatrix4MakeScale(vec.x, vec.y, vec.z);
 }
 
 mat4 mat4::rotate(float rotationInRadian, const vec3& axis) const

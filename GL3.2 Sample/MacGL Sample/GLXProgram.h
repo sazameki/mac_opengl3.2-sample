@@ -27,17 +27,20 @@ class GLXProgram;
 
 
 class GLXShader {
-
-    GLuint  mShader;
+    
+    std::string     mFilename;
+    GLuint          mShader;
     
 protected:
+    GLXShader(const std::string& filename);
     void    compile(const std::string& filename) throw(std::runtime_error);
     
 public:
     virtual ~GLXShader();
     
 public:
-    GLuint  getShader() const;
+    GLuint      getShader() const;
+    std::string getFilename() const;
     
 };
 
@@ -47,7 +50,7 @@ class GLXVertexShader : public GLXShader {
     friend class GLXProgram;
     
     std::map<int, std::string>  mAttributes;
-
+    
 public:
     GLXVertexShader(const std::string& filename) throw(std::runtime_error);
     
@@ -61,17 +64,17 @@ private:
 
 
 class GLXFragmentShader : public GLXShader {
-
+    
 public:
     GLXFragmentShader(const std::string& filename) throw(std::runtime_error);
-
+    
 };
 
 
 class GLXProgram {
-
+    
     GLuint  mProgram;
-
+    
 public:
     GLXProgram(GLXVertexShader& vs, GLXFragmentShader& fs) throw(std::runtime_error);
     ~GLXProgram();

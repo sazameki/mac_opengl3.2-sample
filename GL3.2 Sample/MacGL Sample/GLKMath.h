@@ -310,6 +310,25 @@ static inline GLKMatrix4 GLKMatrix4MakeLookAt(float eyeX, float eyeY, float eyeZ
     return m;
 }
 
+static inline GLKMatrix4 GLKMatrix4MakeOrtho(float left, float right,
+                                             float bottom, float top,
+                                             float nearZ, float farZ)
+{
+    float ral = right + left;
+    float rsl = right - left;
+    float tab = top + bottom;
+    float tsb = top - bottom;
+    float fan = farZ + nearZ;
+    float fsn = farZ - nearZ;
+    
+    GLKMatrix4 m = { 2.0f / rsl, 0.0f, 0.0f, 0.0f,
+        0.0f, 2.0f / tsb, 0.0f, 0.0f,
+        0.0f, 0.0f, -2.0f / fsn, 0.0f,
+        -ral / rsl, -tab / tsb, -fan / fsn, 1.0f };
+    
+    return m;
+}
+
 static inline GLKMatrix4 GLKMatrix4Multiply(const GLKMatrix4& matrixLeft, const GLKMatrix4& matrixRight)
 {
     GLKMatrix4 m;
@@ -379,6 +398,15 @@ static inline GLKMatrix4 GLKMatrix4MakeTranslation(float tx, float ty, float tz)
     m.m[12] = tx;
     m.m[13] = ty;
     m.m[14] = tz;
+    return m;
+}
+
+static inline GLKMatrix4 GLKMatrix4MakeScale(float sx, float sy, float sz)
+{
+    GLKMatrix4 m = GLKMatrix4Identity;
+    m.m[0] = sx;
+    m.m[5] = sy;
+    m.m[10] = sz;
     return m;
 }
 

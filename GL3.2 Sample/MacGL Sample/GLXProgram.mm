@@ -61,10 +61,16 @@ bool CompileShader(GLuint *shader, NSString *filepath, GLenum type)
 }
 
 
+GLXShader::GLXShader(const std::string& filename)
+: mFilename(filename)
+{
+    // Do nothing
+}
+
 void GLXShader::compile(const std::string& filename_) throw(std::runtime_error)
 {
     GLenum type = (dynamic_cast<GLXVertexShader*>(this)? GL_VERTEX_SHADER: GL_FRAGMENT_SHADER);
-
+    
     NSString *filename = [[NSString alloc] initWithCString:filename_.c_str() encoding:NSUTF8StringEncoding];    
     NSString *filepath = [[NSBundle mainBundle] pathForResource:[filename stringByDeletingPathExtension]
                                                          ofType:[filename pathExtension]];
@@ -76,7 +82,7 @@ void GLXShader::compile(const std::string& filename_) throw(std::runtime_error)
         } else {
             oss << "GLXFragmentShader: ";
         }
-        oss << "Cannot find source file \"" << filename << "\"";
+        oss << "Cannot find source file \"" << filename_ << "\"";
         throw std::runtime_error(oss.str());
     }
     
@@ -87,7 +93,7 @@ void GLXShader::compile(const std::string& filename_) throw(std::runtime_error)
         } else {
             oss << "GLXFragmentShader: ";
         }
-        oss << "Failed to compile.";
+        oss << "Failed to compile \"" << filename_ << "\"";
         throw std::runtime_error(oss.str());
     }
 }
@@ -105,8 +111,14 @@ GLuint GLXShader::getShader() const
     return mShader;
 }
 
+std::string GLXShader::getFilename() const
+{
+    return mFilename;
+}
+
 
 GLXVertexShader::GLXVertexShader(const std::string& filename) throw(std::runtime_error)
+: GLXShader(filename)
 {
     compile(filename);
 }
@@ -129,6 +141,7 @@ void GLXVertexShader::locateAttributes(GLuint program)
 
 
 GLXFragmentShader::GLXFragmentShader(const std::string& filename) throw(std::runtime_error)
+: GLXShader(filename)
 {
     compile(filename);
 }
@@ -168,7 +181,7 @@ bool GLXProgram::link(GLXVertexShader& vs, GLXFragmentShader& fs)
     if (logLength > 0) {
         GLchar *log = (GLchar *)malloc(logLength);
         glGetProgramInfoLog(mProgram, logLength, &logLength, log);
-        NSLog(@"Program link log:\n%s", log);
+        GLXLog("Program link log (%s, %s):\n%s", vs.getFilename().c_str(), fs.getFilename().c_str(), log);
         free(log);
     }
 #endif
@@ -195,7 +208,7 @@ bool GLXProgram::validate()
     if (logLength > 0) {
         GLchar *log = (GLchar *)malloc(logLength);
         glGetProgramInfoLog(mProgram, logLength, &logLength, log);
-        NSLog(@"Program validate log:\n%s", log);
+        GLXLog("Program validate log:\n%s", log);
         free(log);
     }
     

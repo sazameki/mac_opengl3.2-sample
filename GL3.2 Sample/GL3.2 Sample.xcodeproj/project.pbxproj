@@ -29,6 +29,8 @@
 		8EE448B11543734000E41ED9 /* nasa_earth_lights.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE448AD1543733F00E41ED9 /* nasa_earth_lights.png */; };
 		8EE448B21543734000E41ED9 /* nasa_saturn.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE448AE1543733F00E41ED9 /* nasa_saturn.png */; };
 		8EE448B31543734000E41ED9 /* nasa_mimas.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE448AF1543733F00E41ED9 /* nasa_mimas.png */; };
+		8EE448C01543902600E41ED9 /* GLXFramebuffer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8EE448BF15438FEC00E41ED9 /* GLXFramebuffer.mm */; };
+		8EE448C3154391FD00E41ED9 /* Shader2.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 8EE448C1154391A600E41ED9 /* Shader2.fsh */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +73,9 @@
 		8EE448AD1543733F00E41ED9 /* nasa_earth_lights.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nasa_earth_lights.png; sourceTree = "<group>"; };
 		8EE448AE1543733F00E41ED9 /* nasa_saturn.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nasa_saturn.png; sourceTree = "<group>"; };
 		8EE448AF1543733F00E41ED9 /* nasa_mimas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nasa_mimas.png; sourceTree = "<group>"; };
+		8EE448BE15438FEB00E41ED9 /* GLXFramebuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLXFramebuffer.h; sourceTree = "<group>"; };
+		8EE448BF15438FEC00E41ED9 /* GLXFramebuffer.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GLXFramebuffer.mm; sourceTree = "<group>"; };
+		8EE448C1154391A600E41ED9 /* Shader2.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader2.fsh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +127,7 @@
 				8E5061141541BF2E00F0CE08 /* GameMain.mm */,
 				8E50610C1541BEBF00F0CE08 /* Shader.vsh */,
 				8E50610D1541BEBF00F0CE08 /* Shader.fsh */,
+				8EE448C1154391A600E41ED9 /* Shader2.fsh */,
 				8EE448AC1543733F00E41ED9 /* nasa_earth.png */,
 				8EE448AD1543733F00E41ED9 /* nasa_earth_lights.png */,
 				8EE448AE1543733F00E41ED9 /* nasa_saturn.png */,
@@ -180,6 +186,8 @@
 				8E9C12311542737900AB635B /* GLXLog.cpp */,
 				8EE448A51543701F00E41ED9 /* GLXTexture.h */,
 				8EE448A61543701F00E41ED9 /* GLXTexture.mm */,
+				8EE448BE15438FEB00E41ED9 /* GLXFramebuffer.h */,
+				8EE448BF15438FEC00E41ED9 /* GLXFramebuffer.mm */,
 			);
 			name = Shared;
 			sourceTree = "<group>";
@@ -252,6 +260,7 @@
 				8E5060FB1541BC4900F0CE08 /* MainMenu.xib in Resources */,
 				8E5061101541BEC900F0CE08 /* Shader.vsh in Resources */,
 				8E5061111541BECC00F0CE08 /* Shader.fsh in Resources */,
+				8EE448C3154391FD00E41ED9 /* Shader2.fsh in Resources */,
 				8EE448B01543734000E41ED9 /* nasa_earth.png in Resources */,
 				8EE448B11543734000E41ED9 /* nasa_earth_lights.png in Resources */,
 				8EE448B21543734000E41ED9 /* nasa_saturn.png in Resources */,
@@ -277,6 +286,7 @@
 				8E9C12321542748D00AB635B /* GLXLog.cpp in Sources */,
 				8EE448A81543703100E41ED9 /* GLXTexture.mm in Sources */,
 				8EE448AB1543706E00E41ED9 /* GLKTextureLoader.mm in Sources */,
+				8EE448C01543902600E41ED9 /* GLXFramebuffer.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

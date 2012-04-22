@@ -14,6 +14,7 @@
 #include "GLXShape.h"
 #include "GLXLog.h"
 #include "GLXTexture.h"
+#include "GLXFramebuffer.h"
 
 #endif  //#ifndef __GLX_COLLECTION_H__
 
