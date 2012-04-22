@@ -175,7 +175,7 @@ void GameMain::draw1(const vec2& screenSize)
         mTex0->activate(0, uniforms[UNIFORM_TEXTURE_0]);
         mat4 modelMat = mat4::Identity;
         //modelMat = modelMat.scale(vec3(1.0, 0.98, 1.0));
-        float scale = 70.0;
+        float scale = 65.0;
         modelMat = modelMat.scale(vec3(scale, scale, scale));
         modelMat = modelMat.translate(vec3(0.0, -0.45, 0.0));
         mat4 mvpMat = vpMat * modelMat;
@@ -185,7 +185,37 @@ void GameMain::draw1(const vec2& screenSize)
         //mShape2->draw();
         mShapeVenus->draw();
     }
-    
+
+    {
+        mTex0->activate(0, uniforms[UNIFORM_TEXTURE_0]);
+        mat4 modelMat = mat4::Identity;
+        //modelMat = modelMat.scale(vec3(1.0, 0.98, 1.0));
+        float scale = 65.0;
+        modelMat = modelMat.scale(vec3(scale, scale, scale));
+        modelMat = modelMat.translate(vec3(0.1, -0.45, 0.0));
+        mat4 mvpMat = vpMat * modelMat;
+        glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, 0, mvpMat.m);
+        glUniformMatrix4fv(uniforms[UNIFORM_MODEL_MATRIX], 1, 0, modelMat.m);
+        glUniform3fv(uniforms[UNIFORM_DIFFUSE_COLOR], 1, vec3(0.1, 0.1, 0.1).v);
+        //mShape2->draw();
+        mShapeVenus->draw();
+    }
+
+    {
+        mTex0->activate(0, uniforms[UNIFORM_TEXTURE_0]);
+        mat4 modelMat = mat4::Identity;
+        //modelMat = modelMat.scale(vec3(1.0, 0.98, 1.0));
+        float scale = 65.0;
+        modelMat = modelMat.scale(vec3(scale, scale, scale));
+        modelMat = modelMat.translate(vec3(-0.1, -0.45, 0.0));
+        mat4 mvpMat = vpMat * modelMat;
+        glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, 0, mvpMat.m);
+        glUniformMatrix4fv(uniforms[UNIFORM_MODEL_MATRIX], 1, 0, modelMat.m);
+        glUniform3fv(uniforms[UNIFORM_DIFFUSE_COLOR], 1, vec3(0.3, 0.1, 0.1).v);
+        //mShape2->draw();
+        mShapeVenus->draw();
+    }
+
     mTex1->activate(0, uniforms[UNIFORM_TEXTURE_0]);
     glUniform3fv(uniforms[UNIFORM_LIGHT_VECTOR], 1, (vec3() - eye).v);
     glUniform3fv(uniforms[UNIFORM_DIFFUSE_COLOR], 1, vec3(1.0, 1.0, 1.0).v);
