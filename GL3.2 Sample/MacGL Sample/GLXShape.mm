@@ -8,6 +8,10 @@
 #include "GLXShape.h"
 
 #include <TargetConditionals.h>
+#import <Foundation/Foundation.h>
+
+#include <stdexcept>
+#include <sstream>
 
 
 static GLuint   sGLXShapeAttributePosition = 0;
@@ -30,6 +34,239 @@ void GLXShape::SetAttributeTextureUV(GLuint index)
     sGLXShapeAttributeTextureUV = index;
 }
 
+
+GLXShape::GLXShape(const std::string& filename_)
+{
+    NSString *filename = [[NSString alloc] initWithCString:filename_.c_str() encoding:NSUTF8StringEncoding];
+    NSURL *fileURL = [[NSBundle mainBundle] URLForResource:[filename stringByDeletingPathExtension]
+                                             withExtension:[filename pathExtension]];
+    if (!fileURL) {
+        std::ostringstream oss;
+        oss << "GLXShape: File not found: " << filename_;
+        throw std::runtime_error(oss.str());
+    }
+    
+    NSError *error = nil;
+    NSString *str = [[NSString alloc] initWithContentsOfURL:fileURL encoding:NSUTF8StringEncoding error:&error];
+    if (!str) {
+        std::ostringstream oss;
+        oss << "GLXShape: Failed to load file: " << filename_;
+        throw std::runtime_error(oss.str());
+    }
+    
+    __block int lineCount = 0;
+    __block int groupCount = 0;
+    __block int materialCount = 0;
+    __block std::vector<vec3>   vertices;
+    __block std::vector<vec2>   texUVs;
+    __block std::vector<vec3>   normals;
+    [str enumerateLinesUsingBlock:^(NSString *line, BOOL *stop) {
+        lineCount++;
+        if ([line hasPrefix:@"#"]) {
+            return;
+        }
+        if ([line hasPrefix:@"g "]) {
+            groupCount++;
+            NSArray *args = [[line substringFromIndex:2] componentsSeparatedByString:@" "];
+            NSLog(@"group: (args=%@)", args);
+        } else if ([line hasPrefix:@"usemtl "]) {
+            materialCount++;
+            NSArray *args = [[line substringFromIndex:7] componentsSeparatedByString:@" "];
+            NSString *matName = [args objectAtIndex:0];
+            NSLog(@"material: \"%@\"", matName);
+        } else if ([line hasPrefix:@"mtllib"]) {
+            NSArray *args = [[line substringFromIndex:7] componentsSeparatedByString:@" "];
+            NSLog(@"matlib: \"%@\"", args);
+        } else if ([line hasPrefix:@"s "]) {
+        } else if ([line hasPrefix:@"v "]) {
+            NSArray *args = [[line substringFromIndex:2] componentsSeparatedByString:@" "];
+            if ([args count] < 3) {
+                std::ostringstream oss;
+                oss << "Invalid .obj file format!! (line=" << lineCount << ": \"" << [line cStringUsingEncoding:NSUTF8StringEncoding] << "\")";
+                throw std::runtime_error(oss.str());
+            }
+            float x = [[args objectAtIndex:0] floatValue];
+            float y = [[args objectAtIndex:1] floatValue];
+            float z = [[args objectAtIndex:2] floatValue];
+            vertices.push_back(vec3(x, y, z));
+        } else if ([line hasPrefix:@"vt "]) {
+            NSArray *args = [[line substringFromIndex:3] componentsSeparatedByString:@" "];
+            if ([args count] < 2) {
+                std::ostringstream oss;
+                oss << "Invalid .obj file format!! (line=" << lineCount << ": \"" << [line cStringUsingEncoding:NSUTF8StringEncoding] << "\")";
+                throw std::runtime_error(oss.str());
+            }
+            float x = [[args objectAtIndex:0] floatValue];
+            float y = [[args objectAtIndex:1] floatValue];
+            texUVs.push_back(vec2(x, y));
+        } else if ([line hasPrefix:@"vn "]) {
+            NSArray *args = [[line substringFromIndex:3] componentsSeparatedByString:@" "];
+            if ([args count] < 3) {
+                std::ostringstream oss;
+                oss << "Invalid .obj file format!! (line=" << lineCount << ": \"" << [line cStringUsingEncoding:NSUTF8StringEncoding] << "\")";
+                throw std::runtime_error(oss.str());
+            }
+            float x = [[args objectAtIndex:0] floatValue];
+            float y = [[args objectAtIndex:1] floatValue];
+            float z = [[args objectAtIndex:2] floatValue];
+            normals.push_back(vec3(x, y, z));
+        } else if ([line hasPrefix:@"f "]) {
+            NSArray *args = [[line substringFromIndex:2] componentsSeparatedByString:@" "];
+            if ([args count] == 3) {
+                vec3 v1, v2, v3;
+                vec2 uv1, uv2, uv3;
+                BOOL hasTexUV = NO;
+                BOOL hasNormal = NO;
+
+                NSArray *params1 = [[args objectAtIndex:0] componentsSeparatedByString:@"/"];
+                if ([params1 count] == 1) {
+                    // Vertex only
+                    int vertexIndex = [[params1 objectAtIndex:0] intValue] - 1;
+                    v1 = vertices[vertexIndex];
+                } else if ([params1 count] == 2) {
+                    // Vertex + texUV
+                    hasTexUV = YES;
+                    int vertexIndex = [[params1 objectAtIndex:0] intValue] - 1;
+                    v1 = vertices[vertexIndex];
+                    int uvIndex = [[params1 objectAtIndex:1] intValue] - 1;
+                    uv1 = texUVs[uvIndex];
+                } else if ([params1 count] == 3) {
+                    // Vertex + texUV + normal
+                    hasTexUV = YES;
+                    hasNormal = YES;
+                    int vertexIndex = [[params1 objectAtIndex:0] intValue] - 1;
+                    v1 = vertices[vertexIndex];
+                }
+
+                NSArray *params2 = [[args objectAtIndex:1] componentsSeparatedByString:@"/"];
+                if ([params2 count] == 1) {
+                    // Vertex only
+                    int vertexIndex = [[params2 objectAtIndex:0] intValue] - 1;
+                    v2 = vertices[vertexIndex];
+                } else if ([params2 count] == 2) {
+                    // Vertex + texUV
+                    int vertexIndex = [[params2 objectAtIndex:0] intValue] - 1;
+                    v2 = vertices[vertexIndex];
+                    int uvIndex = [[params2 objectAtIndex:1] intValue] - 1;
+                    uv2 = texUVs[uvIndex];
+                } else if ([params2 count] == 3) {
+                    // Vertex + texUV + normal
+                    int vertexIndex = [[params2 objectAtIndex:0] intValue] - 1;
+                    v2 = vertices[vertexIndex];
+                }
+
+                NSArray *params3 = [[args objectAtIndex:2] componentsSeparatedByString:@"/"];
+                if ([params3 count] == 1) {
+                    // Vertex only
+                    int vertexIndex = [[params3 objectAtIndex:0] intValue] - 1;
+                    v3 = vertices[vertexIndex];
+                } else if ([params3 count] == 2) {
+                    // Vertex + texUV
+                    int vertexIndex = [[params3 objectAtIndex:0] intValue] - 1;
+                    v3 = vertices[vertexIndex];
+                    int uvIndex = [[params3 objectAtIndex:1] intValue] - 1;
+                    uv3 = texUVs[uvIndex];
+                } else if ([params3 count] == 3) {
+                    // Vertex + texUV + normal
+                    int vertexIndex = [[params3 objectAtIndex:0] intValue] - 1;
+                    v3 = vertices[vertexIndex];
+                }
+
+                addPolygon(v1, v2, v3, uv1, uv3, uv2);
+            } else if ([args count] == 4) {
+                NSArray *args = [[line substringFromIndex:2] componentsSeparatedByString:@" "];
+                vec3 v1, v2, v3, v4;
+                vec2 uv1, uv2, uv3, uv4;
+                BOOL hasTexUV = NO;
+                BOOL hasNormal = NO;
+
+                NSArray *params1 = [[args objectAtIndex:0] componentsSeparatedByString:@"/"];
+                if ([params1 count] == 1) {
+                    // Vertex only
+                    int vertexIndex = [[params1 objectAtIndex:0] intValue] - 1;
+                    v1 = vertices[vertexIndex];
+                } else if ([params1 count] == 2) {
+                    // Vertex + texUV
+                    hasTexUV = YES;
+                    int vertexIndex = [[params1 objectAtIndex:0] intValue] - 1;
+                    v1 = vertices[vertexIndex];
+                    int uvIndex = [[params1 objectAtIndex:1] intValue] - 1;
+                    uv1 = texUVs[uvIndex];
+                } else if ([params1 count] == 3) {
+                    // Vertex + texUV + normal
+                    hasTexUV = YES;
+                    hasNormal = YES;
+                    int vertexIndex = [[params1 objectAtIndex:0] intValue] - 1;
+                    v1 = vertices[vertexIndex];
+                }
+                
+                NSArray *params2 = [[args objectAtIndex:1] componentsSeparatedByString:@"/"];
+                if ([params2 count] == 1) {
+                    // Vertex only
+                    int vertexIndex = [[params2 objectAtIndex:0] intValue] - 1;
+                    v2 = vertices[vertexIndex];
+                } else if ([params2 count] == 2) {
+                    // Vertex + texUV
+                    int vertexIndex = [[params2 objectAtIndex:0] intValue] - 1;
+                    v2 = vertices[vertexIndex];
+                    int uvIndex = [[params2 objectAtIndex:1] intValue] - 1;
+                    uv2 = texUVs[uvIndex];
+                } else if ([params2 count] == 3) {
+                    // Vertex + texUV + normal
+                    int vertexIndex = [[params2 objectAtIndex:0] intValue] - 1;
+                    v2 = vertices[vertexIndex];
+                }
+                
+                NSArray *params3 = [[args objectAtIndex:2] componentsSeparatedByString:@"/"];
+                if ([params3 count] == 1) {
+                    // Vertex only
+                    int vertexIndex = [[params3 objectAtIndex:0] intValue] - 1;
+                    v3 = vertices[vertexIndex];
+                } else if ([params3 count] == 2) {
+                    // Vertex + texUV
+                    int vertexIndex = [[params3 objectAtIndex:0] intValue] - 1;
+                    v3 = vertices[vertexIndex];
+                    int uvIndex = [[params3 objectAtIndex:1] intValue] - 1;
+                    uv3 = texUVs[uvIndex];
+                } else if ([params3 count] == 3) {
+                    // Vertex + texUV + normal
+                    int vertexIndex = [[params3 objectAtIndex:0] intValue] - 1;
+                    v3 = vertices[vertexIndex];
+                }
+
+                NSArray *params4 = [[args objectAtIndex:3] componentsSeparatedByString:@"/"];
+                if ([params4 count] == 1) {
+                    // Vertex only
+                    int vertexIndex = [[params4 objectAtIndex:0] intValue] - 1;
+                    v4 = vertices[vertexIndex];
+                } else if ([params3 count] == 2) {
+                    // Vertex + texUV
+                    int vertexIndex = [[params4 objectAtIndex:0] intValue] - 1;
+                    v4 = vertices[vertexIndex];
+                    int uvIndex = [[params4 objectAtIndex:1] intValue] - 1;
+                    uv4 = texUVs[uvIndex];
+                } else if ([params4 count] == 3) {
+                    // Vertex + texUV + normal
+                    int vertexIndex = [[params4 objectAtIndex:0] intValue] - 1;
+                    v4 = vertices[vertexIndex];
+                }
+                
+                addPolygon(v1, v2, v3, uv1, uv2, uv3);
+                addPolygon(v1, v3, v4, uv3, uv2, uv4);
+            } else {
+                std::ostringstream oss;
+                oss << "Unsupported .obj file format!! (polygon count=" << [args count] << ") (line=" << lineCount << ": \"" << [line cStringUsingEncoding:NSUTF8StringEncoding] << "\")";
+                throw std::runtime_error(oss.str());
+            }
+        } else if ([line length] > 0) {
+            std::ostringstream oss;
+            oss << "Invalid .obj file format!! (line=" << lineCount << ": \"" << [line cStringUsingEncoding:NSUTF8StringEncoding] << "\")";
+            throw std::runtime_error(oss.str());
+        }
+    }];
+    
+    makeVBO();
+}
 
 GLXShape::GLXShape()
 {

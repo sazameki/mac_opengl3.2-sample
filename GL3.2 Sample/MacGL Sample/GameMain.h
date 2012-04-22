@@ -26,6 +26,7 @@ class GameMain {
     GLXShape    *mShape;
     GLXShape    *mShape2;
     GLXShape    *mShapePlane;
+    GLXShape    *mShapeVenus;
 
     float   mRotation;
     

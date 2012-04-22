@@ -17,6 +17,7 @@
 #import <OpenGL/gl3.h>
 #endif
 
+#include <string>
 #include <vector>
 #include "GLXMath.h"
 
@@ -42,6 +43,9 @@ private:
     GLuint  mVertexArray;
     GLuint  mVertexBuffer;
 
+public:
+    GLXShape(const std::string& filename);
+    
 protected:
     GLXShape();
     

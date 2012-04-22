@@ -22,6 +22,7 @@ enum
     UNIFORM_MODEL_MATRIX,
     UNIFORM_LIGHT_VECTOR,
     UNIFORM_TEXTURE_0,
+    UNIFORM_DIFFUSE_COLOR,
     NUM_UNIFORMS
 };
 GLint uniforms[NUM_UNIFORMS];
@@ -53,6 +54,7 @@ GameMain::GameMain(const vec2& screenSize)
     mShape = new GLXShapeSphere(20, 20, 0.05);
     mShape2 = new GLXShapeSphere(100, 100, 5.0);
     mShapePlane = new GLXShapePlane();
+    mShapeVenus = new GLXShape("chara.obj");
     
     mTex0 = new GLXTexture("nasa_saturn.png");
     mTex1 = new GLXTexture("nasa_mimas.png");
@@ -95,6 +97,12 @@ GameMain::~GameMain()
     delete mShape2;
     mShape2 = 0;
     
+    delete mShapePlane;
+    mShapePlane = 0;
+    
+    delete mShapeVenus;
+    mShapeVenus = 0;
+    
     delete mTex0;
     mTex0 = 0;
     
@@ -123,6 +131,7 @@ void GameMain::loadShaders()
     uniforms[UNIFORM_MODEL_MATRIX] = mProgram->locateUniform("modelMatrix");
     uniforms[UNIFORM_LIGHT_VECTOR] = mProgram->locateUniform("lightVec");
     uniforms[UNIFORM_TEXTURE_0] = mProgram->locateUniform("texture0");
+    uniforms[UNIFORM_DIFFUSE_COLOR] = mProgram->locateUniform("diffuseColor");
     
     // Shader 2
     GLXFragmentShader fs2("Shader2.fsh");
@@ -154,24 +163,32 @@ void GameMain::draw1(const vec2& screenSize)
     mFramebuffer->bind();
     mProgram->use();
     
-    glClearColor(0.0, 0.0, 0.0, 1.0);
+    glClearColor(100.0/255, 149.0/255, 237.0/255, 1.0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     
     glEnable(GL_DEPTH_TEST);
     
-    glUniform3fv(uniforms[UNIFORM_LIGHT_VECTOR], 1, (vec3(0.0, 0.0, 0.0)-eye).v);
-    
+    glUniform3fv(uniforms[UNIFORM_LIGHT_VECTOR], 1, vec3(0.0, 0.0, -1.0).v);
+    glUniform3fv(uniforms[UNIFORM_LIGHT_VECTOR], 1, (vec3() - eye).v);
+
     {
         mTex0->activate(0, uniforms[UNIFORM_TEXTURE_0]);
         mat4 modelMat = mat4::Identity;
-        modelMat = modelMat.scale(vec3(1.0, 0.98, 1.0));
+        //modelMat = modelMat.scale(vec3(1.0, 0.98, 1.0));
+        float scale = 70.0;
+        modelMat = modelMat.scale(vec3(scale, scale, scale));
+        modelMat = modelMat.translate(vec3(0.0, -0.45, 0.0));
         mat4 mvpMat = vpMat * modelMat;
         glUniformMatrix4fv(uniforms[UNIFORM_MODELVIEWPROJECTION_MATRIX], 1, 0, mvpMat.m);
         glUniformMatrix4fv(uniforms[UNIFORM_MODEL_MATRIX], 1, 0, modelMat.m);
-        mShape2->draw();
+        glUniform3fv(uniforms[UNIFORM_DIFFUSE_COLOR], 1, vec3(0.1, 0.1, 0.2).v);
+        //mShape2->draw();
+        mShapeVenus->draw();
     }
     
     mTex1->activate(0, uniforms[UNIFORM_TEXTURE_0]);
+    glUniform3fv(uniforms[UNIFORM_LIGHT_VECTOR], 1, (vec3() - eye).v);
+    glUniform3fv(uniforms[UNIFORM_DIFFUSE_COLOR], 1, vec3(1.0, 1.0, 1.0).v);
     for (int i = 0; i < mStars.size(); i++) {
         const StarInfo& starInfo = mStars[i];
         mat4 modelMat = mat4::Identity;

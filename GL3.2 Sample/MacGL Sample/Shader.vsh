@@ -11,11 +11,12 @@ uniform mat4 modelMatrix;
 uniform mat4 modelViewProjectionMatrix;
 uniform mat3 normalMatrix;
 uniform vec3 lightVec;
+uniform vec3 diffuseColor;
 
 void main()
 {
-    vec3 diffuseColor = vec3(1.0, 1.0, 1.0);
-    vec3 ambientColor = vec3(0.3, 0.2, 0.1);
+    //vec3 ambientColor = vec3(0.5, 0.5, 0.5);
+    vec3 ambientColor = vec3(0.0, 0.2, 0.3);
     vec3 theNormal = mat3(modelMatrix) * normal;
 
     float nDotVP = max(0.0, dot(theNormal, normalize(-lightVec)));

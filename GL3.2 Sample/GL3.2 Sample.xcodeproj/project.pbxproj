@@ -31,6 +31,7 @@
 		8EE448B31543734000E41ED9 /* nasa_mimas.png in Resources */ = {isa = PBXBuildFile; fileRef = 8EE448AF1543733F00E41ED9 /* nasa_mimas.png */; };
 		8EE448C01543902600E41ED9 /* GLXFramebuffer.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8EE448BF15438FEC00E41ED9 /* GLXFramebuffer.mm */; };
 		8EE448C3154391FD00E41ED9 /* Shader2.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 8EE448C1154391A600E41ED9 /* Shader2.fsh */; };
+		8EE4494D154496F100E41ED9 /* chara.obj in Resources */ = {isa = PBXBuildFile; fileRef = 8EE4494C154496F100E41ED9 /* chara.obj */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -76,6 +77,7 @@
 		8EE448BE15438FEB00E41ED9 /* GLXFramebuffer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GLXFramebuffer.h; sourceTree = "<group>"; };
 		8EE448BF15438FEC00E41ED9 /* GLXFramebuffer.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = GLXFramebuffer.mm; sourceTree = "<group>"; };
 		8EE448C1154391A600E41ED9 /* Shader2.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = Shader2.fsh; sourceTree = "<group>"; };
+		8EE4494C154496F100E41ED9 /* chara.obj */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = chara.obj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +134,7 @@
 				8EE448AD1543733F00E41ED9 /* nasa_earth_lights.png */,
 				8EE448AE1543733F00E41ED9 /* nasa_saturn.png */,
 				8EE448AF1543733F00E41ED9 /* nasa_mimas.png */,
+				8EE4494C154496F100E41ED9 /* chara.obj */,
 				8E5061121541BEE300F0CE08 /* GLX Base */,
 				8E5060EB1541BC4900F0CE08 /* Supporting Files */,
 			);
@@ -265,6 +268,7 @@
 				8EE448B11543734000E41ED9 /* nasa_earth_lights.png in Resources */,
 				8EE448B21543734000E41ED9 /* nasa_saturn.png in Resources */,
 				8EE448B31543734000E41ED9 /* nasa_mimas.png in Resources */,
+				8EE4494D154496F100E41ED9 /* chara.obj in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

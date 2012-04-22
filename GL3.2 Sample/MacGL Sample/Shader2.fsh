@@ -39,8 +39,22 @@ void main()
     vec4 texColor0 = texture(texture0, texUVVarying).rgba;
     
     vec4 color = texColor0;
-    color = convertToSepia(color);
-    color = addScanLine(color);
+    //color = convertToSepia(color);
+    //color = addScanLine(color);
+    
+    /*const vec3 rgb_to_yuv = vec3(0.299, 0.587, 0.114);
+    float y = dot(rgb_to_yuv, color.rgb);
+    if (y > 0.8) {
+        color = vec4(1.0);
+    } else if (y > 0.6) {
+        color = vec4(vec3(0.75), 1.0);
+    } else if (y > 0.4) {
+        color = vec4(vec3(0.5), 1.0);
+    } else if (y > 0.2) {
+        color = vec4(vec3(0.25), 1.0);
+    } else {
+        color = vec4(vec3(0.0), 1.0);
+    }*/
 
     finalColor = color;
 }
